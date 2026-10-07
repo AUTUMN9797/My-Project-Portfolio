@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動式檯燈商品網頁</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #32304a;
+            color: #222;
+        }
+
+        header {
+            padding: 20px 40px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header p {
+            color: #777;
+        }
+
+        .product-area {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            padding: 60px;
+        }
+
+        /* 左邊檯燈區 */
+
+        .lamp-box {
+            width: 430px;
+            height: 550px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #lightGlow {
+            position: absolute;
+            top: 80px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(255, 224, 140, 0.85),
+                rgba(255, 224, 140, 0.3),
+                rgba(255, 224, 140, 0)
+            );
+            filter: blur(15px);
+            transition: 0.4s;
+        }
+
+        .lamp {
+            position: relative;
+            width: 280px;
+            height: 450px;
+            z-index: 2;
+        }
+
+        #lampShade {
+            position: absolute;
+            width: 180px;
+            height: 100px;
+            top: 50px;
+            left: 50px;
+            border-radius: 100px 100px 20px 20px;
+            background-color: #d6a46f;
+            transition: 0.4s;
+        }
+
+        .bulb {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 135px;
+            left: 120px;
+            background-color: #fff1b5;
+            border-radius: 50%;
+        }
+
+        .pole {
+            position: absolute;
+            width: 20px;
+            height: 230px;
+            top: 150px;
+            left: 130px;
+            background-color: #444;
+        }
+
+        .base {
+            position: absolute;
+            width: 180px;
+            height: 35px;
+            top: 370px;
+            left: 50px;
+            background-color: #444;
+            border-radius: 50%;
+        }
+
+        /* 右邊商品資訊 */
+
+        .product-info {
+            width: 420px;
+        }
+
+        .product-info h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .mode-title {
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        #modeList {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .mode-btn {
+            border: none;
+            background-color: #ddd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mode-btn:hover {
+            background-color: #bbb;
+        }
+
+        .main-btn {
+            border: none;
+            padding: 12px 20px;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #222;
+            color: white;
+        }
+
+        .main-btn:hover {
+            opacity: 0.8;
+        }
+
+        #message {
+            margin-top: 20px;
+            min-height: 30px;
+            color: #666;
+        }
+
+        .product-list {
+            padding: 60px;
+            background-color: white;
+        }
+
+        .product-list h2 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #cards {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 230px;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-color {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>LUMI Lamp</h1>
+    <p>互動式檯燈商品展示</p>
+</header>
+
+
+<section class="product-area">
+
+    <!-- 檯燈 -->
+    <div class="lamp-box">
+
+        <div id="lightGlow"></div>
+
+        <div class="lamp">
+            <div id="lampShade"></div>
+            <div class="bulb"></div>
+            <div class="pole"></div>
+            <div class="base"></div>
+        </div>
+
+    </div>
+
+
+    <!-- 商品資訊 -->
+    <div class="product-info">
+
+        <h2 id="productName">暖木檯燈</h2>
+
+        <div class="price">
+            NT$ <span id="productPrice">1680</span>
+        </div>
+
+        <p id="productDescription" class="description">
+            適合閱讀與居家工作空間使用。
+        </p>
+
+
+        <h3 class="mode-title">燈光模式</h3>
+
+        <div id="modeList"></div>
+
+
+        <button class="main-btn" id="randomBtn">
+            隨機燈光
+        </button>
+
+        <button class="main-btn" id="discountBtn">
+            今日亂數折扣
+        </button>
+
+        <button class="main-btn" id="buyBtn">
+            加入購物車
+        </button>
+
+
+        <div id="message"></div>
+
+    </div>
+
+</section>
+
+
+<section class="product-list">
+
+    <h2>選擇其他檯燈</h2>
+
+    <div id="cards"></div>
+
+</section>
+
+
+<script>
+
+
+    /* =====================================
+       1. 商品陣列
+    ===================================== */
+
+    let products = [
+
+        {
+            name: "暖木檯燈",
+            price: 1680,
+            color: "#d6a46f",
+            description: "適合閱讀與居家工作空間使用。"
+        },
+
+        {
+            name: "奶油白檯燈",
+            price: 1480,
+            color: "#e8dfcf",
+            description: "柔和色調，適合臥室與北歐風空間。"
+        },
+
+        {
+            name: "深夜黑檯燈",
+            price: 1880,
+            color: "#333333",
+            description: "沉穩簡約，適合書房與現代風空間。"
+        },
+
+        {
+            name: "森林綠檯燈",
+            price: 1780,
+            color: "#61745d",
+            description: "自然低彩度配色，適合植栽風室內空間。"
+        }
+
+    ];
+
+
+    /* =====================================
+       2. 燈光模式陣列
+    ===================================== */
+
+    let lampModes = [
+
+        {
+            name: "微光",
+            size: 150,
+            opacity: 0.25
+        },
+
+        {
+            name: "暖光",
+            size: 220,
+            opacity: 0.5
+        },
+
+        {
+            name: "閱讀",
+            size: 320,
+            opacity: 0.9
+        },
+
+        {
+            name: "夜燈",
+            size: 180,
+            opacity: 0.35
+        }
+
+    ];
+
+
+    /* =====================================
+       3. 找 HTML 元素
+    ===================================== */
+
+    let productName =
+        document.getElementById("productName");
+
+    let productPrice =
+        document.getElementById("productPrice");
+
+    let productDescription =
+        document.getElementById("productDescription");
+
+    let lampShade =
+        document.getElementById("lampShade");
+
+    let lightGlow =
+        document.getElementById("lightGlow");
+
+    let cards =
+        document.getElementById("cards");
+
+    let modeList =
+        document.getElementById("modeList");
+
+    let randomBtn =
+        document.getElementById("randomBtn");
+
+    let discountBtn =
+        document.getElementById("discountBtn");
+
+    let buyBtn =
+        document.getElementById("buyBtn");
+
+    let message =
+        document.getElementById("message");
+
+
+    /* =====================================
+       4. 使用 for 迴圈產生商品卡片
+    ===================================== */
+
+    for (let i = 0; i < products.length; i++) {
+
+        cards.innerHTML +=
+
+            "<div class='card' onclick='changeProduct(" + i + ")'>" +
+
+                "<div class='card-color' style='background-color:" +
+                products[i].color +
+                "'></div>" +
+
+                "<h3>" +
+                products[i].name +
+                "</h3>" +
+
+                "<p>NT$ " +
+                products[i].price +
+                "</p>" +
+
+            "</div>";
+
+    }
+
+
+    /* =====================================
+       5. 使用 for 迴圈產生燈光模式按鈕
+    ===================================== */
+
+    for (let i = 0; i < lampModes.length; i++) {
+
+        modeList.innerHTML +=
+
+            "<button class='mode-btn' onclick='changeMode(" +
+            i +
+            ")'>" +
+
+            lampModes[i].name +
+
+            "</button>";
+
+    }
+
+
+    /* =====================================
+       6. 切換商品
+    ===================================== */
+
+    function changeProduct(index) {
+
+        let product =
+            products[index];
+
+        productName.innerHTML =
+            product.name;
+
+        productPrice.innerHTML =
+            product.price;
+
+        productDescription.innerHTML =
+            product.description;
+
+        lampShade.style.backgroundColor =
+            product.color;
+
+        message.innerHTML =
+            "目前選擇：" + product.name;
+    }
+
+
+    /* =====================================
+       7. 切換燈光模式
+    ===================================== */
+
+    function changeMode(index) {
+
+        let mode =
+            lampModes[index];
+
+        lightGlow.style.width =
+            mode.size + "px";
+
+        lightGlow.style.height =
+            mode.size + "px";
+
+        lightGlow.style.opacity =
+            mode.opacity;
+
+        message.innerHTML =
+            "目前燈光模式：" + mode.name;
+    }
+
+
+    /* =====================================
+       8. 隨機選擇燈光模式
+    ===================================== */
+
+    randomBtn.onclick = function() {
+
+        let randomIndex =
+            Math.floor(
+                Math.random() * lampModes.length
+            );
+
+        changeMode(randomIndex);
+
+        message.innerHTML +=
+            "（隨機選擇）";
+    };
+
+
+    /* =====================================
+       9. 亂數折扣
+    ===================================== */
+
+    discountBtn.onclick = function() {
+
+        let discounts =
+            [5, 10, 15, 20];
+
+        let randomIndex =
+            Math.floor(
+                Math.random() * discounts.length
+            );
+
+        let discount =
+            discounts[randomIndex];
+
+        let originalPrice =
+            Number(productPrice.innerHTML);
+
+        let newPrice =
+            originalPrice *
+            (100 - discount) /
+            100;
+
+        message.innerHTML =
+            "今日抽到 " +
+            discount +
+            "% 折扣，折扣後約 NT$ " +
+            Math.round(newPrice);
+    };
+
+
+    /* =====================================
+       10. 加入購物車
+    ===================================== */
+
+    buyBtn.onclick = function() {
+
+        message.innerHTML =
+            productName.innerHTML +
+            " 已加入購物車。";
+    };
+
+
+    /* =====================================
+       11. 網頁開啟時
+           隨機選擇一種燈光模式
+    ===================================== */
+
+    let startRandom =
+        Math.floor(
+            Math.random() * lampModes.length
+        );
+
+    changeMode(startRandom);
+
+</script>
+
+</body>
+</html>
