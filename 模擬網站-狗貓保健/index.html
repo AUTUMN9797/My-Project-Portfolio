@@ -1,0 +1,3651 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>【熟齡犬貓】日常維持寵物心臟與腦部健康│牧穆生醫</title>
+    <!-- *************  CSS *************** -->
+    <style>
+        /* ============= 全站基礎設定 ============= */
+        :root {
+            /* 主色盤：只使用大地色、淺灰色、鼠尾草綠 */
+            --color-earth: #bf8e56;
+            --color-light: #f4f1ea;
+            --color-sage: #4a5d4e;
+
+            /* 相容原有樣式名稱，統一連回三個主色 */
+            --color-cream: var(--color-light);
+            --color-ivory: var(--color-light);
+            --color-green: var(--color-sage);
+            --color-green-dark: var(--color-sage);
+            --color-green-deep: var(--color-sage);
+            --color-gold: var(--color-earth);
+            --color-gold-light: var(--color-earth);
+            --color-mint: var(--color-earth);
+            --color-text-muted: var(--color-sage);
+            --color-border: rgba(74, 93, 78, 0.22);
+            --shadow-card: 0 12px 30px rgba(74, 93, 78, 0.10);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 84px;
+        }
+
+        body {
+            margin: 0;
+            padding-top: 84px;
+            background-color: var(--color-cream);
+            color: var(--color-green);
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+            color: var(--color-green-dark);
+            font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        h1 {
+            font-size: 44px;
+        }
+
+        h2 {
+            font-size: 34px;
+        }
+
+        h3 {
+            font-size: 22px;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1em;
+            font-size: 16px;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img,
+        video {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid rgba(191, 142, 86, 0.72);
+            outline-offset: 4px;
+        }
+
+        ::selection {
+            background: rgba(191, 142, 86, 0.28);
+            color: var(--color-green-dark);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        main section {
+            padding: 90px 8%;
+        }
+
+        /* ============= 頂部導覽列 ============= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(244, 241, 234, 0.14);
+            background-color: rgba(74, 93, 78, 0.7);
+            color: #f4f1ea;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 36px;
+            width: 94%;
+            max-width: 1450px;
+            padding: 0 20px;
+        }
+
+        .logo {
+            flex: 0 0 auto;
+            margin: 0;
+            color: var(--color-ivory);
+            font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+            font-size: 25px;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 8px 10px;
+            border-radius: 999px;
+            color: rgba(244, 241, 234, 0.92);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.5;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(244, 241, 234, 0.09);
+            color: var(--color-gold-light);
+        }
+
+
+        /* 主導覽 CTA：淺色文字與外框 */
+        nav a.nav-cta {
+            margin-left: 4px;
+            padding: 9px 17px;
+            border: 1px solid var(--color-light);
+            color: var(--color-light);
+        }
+
+        nav a.nav-cta:hover {
+            border-color: var(--color-light);
+            background: var(--color-light);
+            color: var(--color-sage);
+        }
+
+
+        /* ============= PAGE 1：主視覺 ============= */
+        #hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
+            align-items: center;
+            gap: 68px;
+            min-height: 660px;
+            padding: 72px 8% 82px;
+            background-color: var(--color-cream);
+        }
+
+        .hero-text,
+        .right-content,
+        .hero-visual {
+            min-width: 0;
+        }
+
+        .hero-text h2 {
+            margin-bottom: 14px;
+            color: #4a5d4e;
+            font-size: 26px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            line-height: 1.65;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 18px;
+            color: #bf8e56;
+            font-size: 44px;
+            letter-spacing: 0.04em;
+            line-height: 1.45;
+        }
+
+        .hero-text {
+            width: auto;
+        }
+
+        .right-content {
+            width: auto;
+        }
+
+        .hero-visual {
+            width: 100%;
+        }
+
+        .fade-in-container {
+            margin: 30px 0 34px;
+        }
+
+        .fade-line {
+            margin: 9px 0;
+            color: var(--color-green);
+            font-family: "Noto Serif TC", "Songti TC", serif;
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transition: opacity 1.9s ease;
+        }
+
+        .fade-line.show {
+            opacity: 1;
+        }
+
+        .hero-photo {
+            position: relative;
+            width: 100%;
+            height: 540px;
+            overflow: hidden;
+            border: 1px solid rgba(191, 142, 86, 0.75);
+            border-radius: 30px;
+            background: #f4f1ea;
+            box-shadow: 0 22px 50px rgba(74, 93, 78, 0.16);
+        }
+
+        .hero-photo video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .button-group .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 12px 23px;
+            border: 1px solid var(--color-green);
+            border-radius: 999px;
+            background: var(--color-green);
+            color: var(--color-ivory);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            line-height: 1.5;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 6px 16px rgba(74, 93, 78, 0.13);
+            transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .button-group .button:hover {
+            transform: translateY(-3px);
+            border-color: var(--color-green-dark);
+            background: var(--color-green-dark);
+            box-shadow: 0 10px 22px rgba(74, 93, 78, 0.19);
+        }
+
+        /* ============= PAGE 2：React 選品指南 ============= */
+
+        #finder {
+            position: relative;
+            padding: 95px 8%;
+            background: #eae2d1;
+            color: #4a5d4e;
+            text-align: center;
+        }
+
+        #finder::before,
+        #finder::after {
+            display: none;
+            content: none;
+        }
+
+        #finder > h2 {
+            margin-bottom: 12px;
+            color: #4a5d4e;
+            font-size: 36px;
+        }
+
+        #finder .finder-subtitle {
+            margin: 0 auto 38px;
+            color: #69765f;
+            font-size: 15px;
+        }
+
+        #finder-root {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        /* 問卷最外框 */
+        .finder-shell {
+            padding: 28px;
+            border: 1px solid #d8c9aa;
+            border-radius: 25px;
+            background: #f5efdf;
+            box-shadow: 0 14px 35px rgba(85, 94, 66, 0.10);
+            backdrop-filter: none;
+        }
+
+        /* 進度文字 */
+        .finder-progress-heading {
+            display: block;
+            margin-bottom: 14px;
+            color: #587052;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+
+        /* 進度條 */
+        .finder-progress-track {
+            height: 9px;
+            margin-bottom: 26px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #ded2b7;
+        }
+
+        .finder-progress-value {
+            height: 100%;
+            border-radius: 20px;
+            background: #4a5d4e;
+            transition: width 0.4s ease;
+        }
+
+        /* 題目卡片 */
+        .finder-card {
+            padding: 38px;
+            border: 1px solid #e2d5bb;
+            border-radius: 20px;
+            background: #fffdf7;
+            color: #4a5d4e;
+            box-shadow: none;
+            animation: finderFadeIn 0.35s ease both;
+        }
+
+
+        /* 題目文字 */
+        .finder-card h3 {
+            margin-bottom: 12px;
+            color: #405644;
+            font-size: 27px;
+            line-height: 1.5;
+        }
+
+        .finder-question-description {
+            margin-bottom: 26px;
+            color: #737b68;
+            font-size: 14px;
+        }
+
+        /* 選項排列 */
+        .finder-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        /* 選項 */
+        .finder-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            min-height: 66px;
+            padding: 14px 18px;
+            border: 1px solid #ded4bf;
+            border-radius: 13px;
+            background: #f7f3e9;
+            color: #405644;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .finder-option:hover {
+            transform: translateY(-2px);
+            border-color: #849876;
+            background: #edf0e5;
+        }
+
+        /* 選項編號 */
+        .finder-option-marker {
+            display: flex;
+            flex: 0 0 30px;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            background: #e8e1d0;
+            color: #607a59;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .finder-option-text {
+            flex: 1;
+        }
+
+        .finder-option-arrow {
+            color: #8c9a80;
+            font-size: 19px;
+        }
+
+        /* 選取後 */
+        .finder-option.selected {
+            border-color: #78936d;
+            background: #e5ebdd;
+            box-shadow: none;
+        }
+
+        .finder-option.selected .finder-option-marker {
+            background: #647e5e;
+            color: #ffffff;
+        }
+
+        .finder-option.selected .finder-option-arrow {
+            color: #647e5e;
+        }
+
+        /* 操作按鈕 */
+        .finder-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .finder-btn {
+            min-height: 46px;
+            padding: 11px 24px;
+            border: 1px solid #607a59;
+            border-radius: 30px;
+            background: #607a59;
+            color: #fffdf7;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .finder-btn:hover:not(:disabled) {
+            background: #4a5d4e;
+        }
+
+        .finder-btn.secondary {
+            border-color: #c9bea8;
+            background: transparent;
+            color: #4a5d4e;
+        }
+
+        .finder-btn.secondary:hover:not(:disabled) {
+            border-color: #9aab8f;
+            background: #e5ebdd;
+        }
+
+        .finder-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* 推薦結果 */
+        .finder-result-label {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 7px 15px;
+            border-radius: 20px;
+            background: #e8e3d5;
+            color: #7d704c;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .finder-result h3 {
+            color: #405644;
+            font-size: 30px;
+        }
+
+        .finder-result-description {
+            color: #64735e;
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .finder-result-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            margin-top: 22px;
+            padding: 11px 24px;
+            border: 1px solid #607a59;
+            border-radius: 30px;
+            background: #607a59;
+            color: #fffdf7;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .finder-result-link:hover {
+            background: #4a5d4e;
+        }
+
+
+        @keyframes finderFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============= PAGE 3：三款產品介紹與展示 ============= */
+        #about {
+            background-color: #4a5d4e;
+            color: #f4f1ea;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 28px;
+            width: 100%;
+            max-width: 1350px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 28px;
+            border: 1px solid rgba(191, 142, 86, 0.38);
+            border-radius: 20px;
+            background: #f4f1ea;
+            color: var(--color-sage);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 36px rgba(74, 93, 78, 0.16);
+        }
+
+        .benefit-card h3,
+        .benefit-card p {
+            color: #4a5d4e;
+        }
+
+     
+
+        .benefit-card .num {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .benefit-card .num img {
+            width: 100%;
+            max-width: 700px;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        /* ============= PAGE 4：影片背景與科學說明輪播 ============= */
+
+        .video-background {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 680px;
+            padding: 100px 8%;
+            overflow: hidden;
+            background: #4a5d4e;
+            color: #f4f1ea;
+        }
+
+        /* 背景影片 */
+        .video-background__media {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            pointer-events: none;
+        }
+
+        /* 影片覆蓋層：半透明鼠尾草綠 */
+        .video-background::before {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(90deg, rgba(24, 40, 29, 0.86), rgba(24, 40, 29, 0.58));
+            content: "";
+            pointer-events: none;
+        }
+
+        /* 前景內容 */
+        .video-background__content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        /* 主標題 */
+        .video-background__title {
+            margin: 0 0 42px;
+            color: #eaeef4;
+            font-size: 40px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* 輪播容器 */
+        .page4-carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 68px 40px;
+        }
+
+        /* 每張輪播內容 */
+        .page4-slide {
+            display: none;
+            min-height: 270px;
+            padding: 28px 22px;
+            text-align: center;
+        }
+
+        /* 目前顯示的輪播內容 */
+        .page4-slide.active {
+            display: block;
+            animation: page4FadeIn 1.3s ease-out both;
+        }
+
+        /* 輪播小標題 */
+        .page4-slide h3 {
+            margin: 0 0 22px;
+            color: #fbdc94;
+            text-shadow: 0 1px 0 rgba(191, 142, 86, 0.55);
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* 輪播說明文字 */
+        .page4-slide p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: rgba(244, 241, 234, 0.93);
+            font-size: 16px;
+            line-height: 2;
+            text-align: center;
+        }
+
+        /* 左右切換按鈕 */
+        .page4-arrow {
+            position: absolute;
+            top: 38%;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            padding: 0;
+            border: 1px solid rgba(244, 241, 234, 0.65);
+            border-radius: 50%;
+            background: rgba(74, 93, 78, 0.42);
+            color: #f4f1ea;
+            line-height: 1;
+            cursor: pointer;
+            transition:
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        /* Remix Icon 圖示 */
+        .page4-arrow i {
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        /* 滑鼠移過：保持半透明，不改成實心色 */
+        .page4-arrow:hover {
+            transform: scale(1.05);
+            border-color: rgba(244, 241, 234, 0.85);
+            background: rgba(74, 93, 78, 0.60);
+            color: #f4f1ea;
+        }
+
+        /* 左側按鈕 */
+        .page4-prev {
+            left: 0;
+        }
+
+        /* 右側按鈕 */
+        .page4-next {
+            right: 0;
+        }
+
+        /* 輪播淡入動畫 */
+        @keyframes page4FadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* ============= PAGE 5：權威背書 ============= */
+
+        /* 區塊容器 */
+        #DoctorApproved {
+            display: block;
+            position: relative;
+            width: 100%;
+            padding: 84px 0 92px;
+            overflow: hidden;
+            box-sizing: border-box;
+            background-color: #bf8e56;
+            color: #f4f1ea;
+        }
+
+        /* 標題 */
+        #DoctorApproved > h2 {
+            display: block;
+            width: 84%;
+            max-width: 1180px;
+            margin: 0 auto 14px;
+            color: #f4f1ea;
+            font-size: 36px;
+            font-weight: 500;
+            line-height: 1.5;
+            letter-spacing: 0.05em;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* PAGE 5：權威背書－標題說明文字 */
+        #DoctorApproved > p {
+            width: 84%;
+            max-width: 900px;
+            margin: 0 auto 36px;
+            color: #f4f1ea;
+            font-family: "Noto Sans TC", "PingFang TC",
+                "Microsoft JhengHei", sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.9;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        /* React 跑馬燈視窗 */
+        #DoctorApproved .doctor-approved__marquee {
+            display: block;
+            position: relative;
+            width: 100%;
+            margin: 0;
+            padding: 8px 0 20px;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* 動畫軌道：包含兩組卡片 */
+        #DoctorApproved .doctor-approved__track {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            width: max-content;
+            max-width: none;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+            animation: doctorApprovedFlow 52s linear infinite;
+            animation-play-state: running;
+            will-change: transform;
+        }
+
+        /* 每一組六張卡片 */
+        #DoctorApproved .doctor-approved__group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            flex: 0 0 auto;
+            width: max-content;
+            max-width: none;
+            gap: 24px;
+            margin: 0;
+            padding: 0 24px 0 0;
+            box-sizing: border-box;
+        }
+
+        /* 單張卡片 */
+        #DoctorApproved .doctor-approved__card {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            flex: 0 0 330px;
+            width: 330px;
+            min-width: 330px;
+            max-width: 330px;
+            margin: 0;
+            padding: 22px;
+            border: 1px solid rgba(191, 142, 86, 0.32);
+            border-radius: 20px;
+            background: #f4f1ea;
+            color: var(--color-sage);
+            box-sizing: border-box;
+            box-shadow: 0 12px 30px rgba(74, 93, 78, 0.10);
+            transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        /* 醫師照片 */
+        #DoctorApproved .doctor-approved__card > img {
+            display: block;
+            flex: 0 0 210px;
+            width: 100%;
+            height: 210px;
+            max-width: none;
+            margin: 0 0 20px;
+            padding: 0;
+            border-radius: 13px;
+            background: #f4f1ea;
+            object-fit: cover;
+            object-position: center 30%;
+            box-sizing: border-box;
+        }
+
+        /* 醫師姓名 */
+        #DoctorApproved .doctor-approved__card > h3 {
+            display: block;
+            margin: 0 0 13px;
+            padding: 0;
+            color: var(--color-sage);
+            font-family: "Noto Sans TC", "PingFang TC",
+                "Microsoft JhengHei", sans-serif;
+            font-size: 21px;
+            font-weight: 600;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        /* 醫師評語 */
+        #DoctorApproved .doctor-approved__card > p {
+            display: block;
+            margin: 0;
+            padding: 0;
+            color: var(--color-sage);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        /* 無縫向左循環 */
+        @keyframes doctorApprovedFlow {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        /* ============= PAGE 6：購買方案 ============= */
+        #shop {
+            padding: 88px 6% 96px;
+            background-color: var(--color-cream);
+            color: var(--color-green);
+            text-align: center;
+        }
+
+        #shop > h2 {
+            margin: 0 0 14px;
+            color: var(--color-green-dark);
+            font-size: 36px;
+        }
+
+        #shop > p {
+            margin: 0 auto 44px;
+            color: #4a5d4e;
+            line-height: 1.8;
+        }
+
+        .bundle-box {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 28px;
+            width: 100%;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .bundle-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 0;
+            padding: 36px 28px 30px;
+            border: 1px solid var(--color-border);
+            border-radius: 22px;
+            background: #f4f1ea;
+            box-shadow: 0 7px 20px rgba(74, 93, 78, 0.07);
+            cursor: pointer;
+            transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .bundle-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-gold);
+            box-shadow: 0 16px 34px rgba(74, 93, 78, 0.14);
+        }
+
+        .bundle-card.selected {
+            padding: 35px 27px 29px;
+            border: 2px solid var(--color-earth);
+            background: #f4f1ea;
+            box-shadow: 0 0 0 4px rgba(191, 142, 86, 0.12), 0 14px 30px rgba(74, 93, 78, 0.11);
+        }
+
+        .bundle-card.selected:hover {
+            border-color: #4a5d4e;
+        }
+
+        .bundle-card h3 {
+            margin: 5px 0 17px;
+            color: var(--color-green-dark);
+            font-size: 24px;
+            line-height: 1.5;
+        }
+
+        .bundle-card .original-price {
+            margin: 0 0 5px;
+            color: #bf8e56;
+            font-size: 14px;
+            text-decoration: line-through;
+        }
+
+        .bundle-card .sale-price {
+            margin: 0 0 5px;
+            color: var(--color-green);
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .bundle-card .discount-text {
+            margin: 0 0 12px;
+            color: #bf8e56;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .bundle-card > p {
+            width: 100%;
+            margin-bottom: 12px;
+            color: #4a5d4e;
+            line-height: 1.8;
+        }
+
+        .bundle-card .bundle-description {
+            min-height: 58px;
+            margin: 8px 0 18px;
+            color: #4a5d4e;
+        }
+
+        .bundle-card .product-list-title {
+            align-self: flex-start;
+            margin: 0;
+            color: var(--color-green-dark);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .bundle-card ul {
+            width: 100%;
+            flex-grow: 1;
+            margin: 10px 0 14px;
+            padding: 0;
+            list-style: none;
+            text-align: left;
+            line-height: 1.9;
+        }
+
+        .bundle-card li {
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(74, 93, 78, 0.10);
+            color: #4a5d4e;
+        }
+
+        .bundle-card li::before {
+            margin-right: 9px;
+            color: var(--color-mint);
+            content: "✓";
+            font-weight: 700;
+        }
+
+
+
+        /* Page 6：動態選配表單 */
+        .bundle-content {
+            width: 100%;
+            margin: 4px 0 22px;
+        }
+
+        .bundle-choices {
+            display: grid;
+            gap: 10px;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            text-align: left;
+        }
+
+        .bundle-choices legend {
+            margin-bottom: 10px;
+            color: var(--color-green-dark);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .bundle-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background: rgba(244, 241, 234, 0.72);
+            color: #4a5d4e;
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .bundle-option:hover {
+            border-color: var(--color-earth);
+            background: rgba(191, 142, 86, 0.08);
+        }
+
+        .bundle-option input {
+            flex: 0 0 auto;
+            accent-color: var(--color-sage);
+        }
+
+        .bundle-gift {
+            margin: 16px 0 0;
+            padding-top: 14px;
+            border-top: 1px solid rgba(74, 93, 78, 0.12);
+            color: var(--color-earth);
+            font-size: 14px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .bundle-card button {
+            width: 100%;
+            min-height: 48px;
+            margin-top: auto;
+            padding: 12px 20px;
+            border: 1px solid var(--color-green);
+            border-radius: 999px;
+            background: var(--color-green);
+            color: var(--color-ivory);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .bundle-card button:hover {
+            transform: translateY(-1px);
+            border-color: var(--color-green-dark);
+            background: var(--color-green-dark);
+        }
+
+        .bundle-card button:focus-visible {
+            outline: 3px solid var(--color-mint);
+            outline-offset: 3px;
+        }
+
+        .bundle-card.selected button {
+            border-color: var(--color-sage);
+            background: var(--color-sage);
+            color: var(--color-light);
+        }
+
+        .bundle-card.selected button:hover {
+            border-color: var(--color-sage);
+            background: var(--color-sage);
+        }
+
+
+        #bundleSelectionStatus {
+            margin: 28px auto 0;
+            color: var(--color-green-dark);
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* PAGE 6：簡易購買確認視窗*/
+
+        .order-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+
+            background: rgba(74, 93, 78, 0.55);
+
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+
+        /* 顯示視窗 */
+        .order-modal.show {
+            display: flex;
+        }
+
+
+        /* 視窗本體 */
+        .order-modal-content {
+            position: relative;
+
+            width: 100%;
+            max-width: 520px;
+
+            padding: 42px 38px 34px;
+
+            border: 1px solid rgba(191, 142, 86, 0.45);
+            border-radius: 24px;
+
+            background: #f4f1ea;
+
+            color: #4a5d4e;
+
+            box-shadow:
+                0 25px 70px rgba(74, 93, 78, 0.25);
+
+            animation: orderModalIn 0.35s ease;
+        }
+
+
+        /* 小標題 */
+        .order-small-title {
+            margin: 0 0 6px;
+
+            color: #bf8e56;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 0.16em;
+        }
+
+
+        /* 標題 */
+        .order-modal-content h2 {
+            margin: 0;
+
+            color: #4a5d4e;
+
+            font-size: 28px;
+
+            text-align: left;
+        }
+
+
+        /* 分隔線 */
+        .order-divider {
+            width: 100%;
+            height: 1px;
+
+            margin: 24px 0;
+
+            background:
+                rgba(74, 93, 78, 0.16);
+        }
+
+
+        /* 資料列 */
+        .order-info p {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 30px;
+
+            margin: 0;
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid rgba(74, 93, 78, 0.10);
+        }
+
+
+        /* 左側文字 */
+        .order-info span {
+            flex-shrink: 0;
+
+            color: rgba(74, 93, 78, 0.70);
+
+            font-size: 14px;
+        }
+
+
+        /* 右側內容 */
+        .order-info strong {
+            color: #4a5d4e;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            text-align: right;
+        }
+
+
+        /* 總價格 */
+        .order-total {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 25px;
+            margin-bottom: 24px;
+        }
+
+
+        .order-total span {
+            font-size: 16px;
+
+            color: #4a5d4e;
+        }
+
+
+        .order-total strong {
+            color: #bf8e56;
+
+            font-size: 30px;
+
+            font-weight: 700;
+        }
+
+
+        /* 訂購按鈕 */
+        .order-confirm-button {
+            width: 100%;
+
+            min-height: 50px;
+
+            padding: 12px 20px;
+
+            border: none;
+            border-radius: 999px;
+
+            background: #4a5d4e;
+
+            color: #f4f1ea;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background-color 0.2s ease;
+        }
+
+
+        .order-confirm-button:hover {
+            transform: translateY(-2px);
+
+            background:
+                #3f5144;
+        }
+
+
+        /* 小提醒 */
+        .order-notice {
+            margin: 16px 0 0;
+
+            color:
+                rgba(74, 93, 78, 0.62);
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+
+        /* 關閉按鈕 */
+        .order-close {
+            position: absolute;
+
+            top: 17px;
+            right: 19px;
+
+            width: 38px;
+            height: 38px;
+
+            padding: 0;
+
+            border: none;
+
+            background: transparent;
+
+            color: #4a5d4e;
+
+            font-size: 27px;
+
+            cursor: pointer;
+        }
+
+
+        /* 彈出動畫 */
+        @keyframes orderModalIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(20px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0) scale(1);
+            }
+        }
+
+        /* ============= PAGE 7：品牌信任資訊 ============= */
+        .trust {
+            display: block;
+            width: 100%;
+            padding: 80px 8%;
+            background: var(--color-cream);
+            color: var(--color-green);
+        }
+
+        .trust .container {
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        /* 四個圓圈的排列 */
+        .trust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            width: 100%;
+        }
+
+        /* 每個品牌信任元素：圓形外框 */
+        .trust-item {
+            display: flex;
+            flex: 0 1 250px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 250px;
+            max-width: 100%;
+            aspect-ratio: 1 / 1;
+            padding: 24px;
+            border: 1px solid var(--color-green);
+            border-radius: 50%;
+            box-sizing: border-box;
+            background: var(--color-green);
+            text-align: center;
+        }
+
+        /* 綠色 Icon */
+        .trust-item svg {
+            display: block;
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            margin: 0 0 18px;
+            color: var(--color-cream);
+        }
+
+        /* 標題文字 */
+        .trust-item strong {
+            display: block;
+            margin: 0 0 8px;
+            color: var(--color-cream);
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* 說明文字 */
+        .trust-item span {
+            display: block;
+            color: var(--color-cream);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* 保留原本的顯示狀態 */
+        .trust .reveal {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+        }
+
+
+        /* ============= PAGE 8：常見問題 FAQ ============= */
+        #faq {
+            font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+            background: var(--color-cream);
+            color: var(--color-green);
+        }
+
+        #faq > .container {
+            max-width: 1050px;
+        }
+
+        #faq h2 {
+            margin: 0 0 32px;
+            color: var(--color-green-dark);
+            font-size: 36px;
+            text-align: center;
+        }
+
+        #faq article {
+            padding: 12px 0 0;
+            border-bottom: 1px solid rgba(191, 142, 86, 0.62);
+        }
+
+        #faq article h3 {
+            position: relative;
+            margin: 0;
+            padding: 18px 48px 18px 0;
+            color: var(--color-green-dark);
+            font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.8;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        #faq article h3:hover {
+            color: #bf8e56;
+        }
+
+        #faq article h3::after {
+            position: absolute;
+            top: 17px;
+            right: 5px;
+            color: var(--color-gold);
+            content: "⌄";
+            font-family: sans-serif;
+            font-size: 25px;
+            line-height: 1.4;
+            transition: color 0.22s ease, transform 0.22s ease;
+        }
+
+        #faq article.open h3::after {
+            transform: rotate(180deg);
+            content: "⌄";
+        }
+
+        #faq article p {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            color: #4a5d4e;
+            font-size: 15px;
+            line-height: 2;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: max-height 0.3s ease, opacity 0.22s ease, transform 0.22s ease, padding 0.22s ease;
+        }
+
+        #faq article.open p {
+            max-height: 900px;
+            padding: 0 44px 22px 0;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============= 頁尾 ============= */
+        footer {
+            padding: 38px 20px 34px;
+            background: var(--color-green-dark);
+            color: var(--color-cream);
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            color: rgba(244, 241, 234, 0.92);
+            font-size: 14px;
+            line-height: 2;
+        }
+
+        footer small {
+            display: inline-block;
+            margin-top: 6px;
+            color: rgba(244, 241, 234, 0.68);
+            font-size: 12px;
+            letter-spacing: 0.03em;
+        }
+
+        /* ============= 全站響應式設計 ============= */
+        /* 平板與小型筆電 */
+        @media (max-width: 1024px) {
+            main section {
+                padding: 76px 6%;
+            }
+
+            header .container {
+                gap: 20px;
+                width: 96%;
+            }
+
+            nav {
+                gap: 6px;
+            }
+
+            nav a {
+                padding: 7px 8px;
+                font-size: 13px;
+            }
+
+            #hero {
+                grid-template-columns: 1fr;
+                gap: 38px;
+                min-height: auto;
+                padding: 68px 7% 76px;
+            }
+
+            .hero-text,
+            .right-content {
+                width: 100%;
+            }
+
+            .hero-photo {
+                height: 440px;
+            }
+
+            .benefit-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+            .bundle-box {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+            .trust-item {
+                flex-basis: 220px;
+                width: 220px;
+            }
+        }
+
+        /* 手機與直式平板 */
+        @media (max-width: 768px) {
+            html {
+                scroll-padding-top: 118px;
+            }
+
+            body {
+                padding-top: 0;
+            }
+
+            header {
+                position: sticky;
+                padding: 10px 0;
+            }
+
+            header .container {
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+                padding: 0 14px;
+            }
+
+            .logo {
+                font-size: 22px;
+                text-align: center;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            nav a,
+            nav a.nav-cta {
+                margin-left: 0;
+                padding: 6px 9px;
+                font-size: 12px;
+            }
+
+            main section {
+                padding: 64px 5%;
+                scroll-margin-top: 118px;
+            }
+
+            #hero {
+                gap: 30px;
+                padding: 58px 5% 66px;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .hero-text h2 {
+                font-size: 22px;
+            }
+
+            .fade-line {
+                font-size: 23px;
+            }
+
+            .hero-photo {
+                height: 360px;
+                border-radius: 22px;
+            }
+
+            #finder {
+                padding: 64px 5%;
+            }
+
+            #finder > h2 {
+                font-size: 28px;
+            }
+
+            .finder-shell {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .finder-card {
+                padding: 26px 20px;
+            }
+
+            .finder-card h3 {
+                font-size: 23px;
+            }
+
+            .finder-option {
+                min-height: 60px;
+                font-size: 14px;
+            }
+
+            .finder-buttons {
+                flex-direction: column-reverse;
+            }
+
+            .finder-btn {
+                width: 100%;
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-background {
+                min-height: 600px;
+                padding: 76px 5%;
+            }
+
+            .video-background__title {
+                margin-bottom: 30px;
+                font-size: 32px;
+            }
+
+            .page4-carousel {
+                padding: 0 50px 30px;
+            }
+
+            .page4-slide {
+                min-height: 240px;
+                padding: 22px 14px;
+            }
+
+            .page4-slide h3 {
+                font-size: 25px;
+            }
+
+            .page4-arrow {
+                width: 42px;
+                height: 42px;
+            }
+
+            #DoctorApproved {
+                padding: 70px 0 76px;
+            }
+
+            #DoctorApproved > h2 {
+                width: 90%;
+                font-size: 30px;
+            }
+
+            #DoctorApproved > p {
+                width: 90%;
+                font-size: 15px;
+            }
+
+            #DoctorApproved .doctor-approved__card {
+                flex-basis: 290px;
+                width: 290px;
+                min-width: 290px;
+                max-width: 290px;
+            }
+
+            #DoctorApproved .doctor-approved__card > img {
+                flex-basis: 190px;
+                height: 190px;
+            }
+
+            #shop {
+                padding: 70px 5% 76px;
+            }
+
+            #shop > h2 {
+                font-size: 30px;
+            }
+
+            .bundle-box {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-card {
+                padding: 30px 24px 26px;
+            }
+
+            .order-modal {
+                padding: 18px;
+            }
+
+            .order-modal-content {
+                padding: 38px 24px 28px;
+            }
+
+            .order-modal-content h2 {
+                font-size: 24px;
+            }
+
+            .order-info p {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .order-info strong {
+                text-align: left;
+            }
+
+            .trust {
+                padding: 64px 5%;
+            }
+
+            .trust-bar {
+                gap: 18px;
+            }
+
+            .trust-item {
+                flex-basis: 210px;
+                width: 210px;
+                padding: 20px;
+            }
+
+            #faq h2 {
+                font-size: 30px;
+            }
+
+            #faq article h3 {
+                padding-right: 40px;
+                font-size: 17px;
+            }
+
+            #faq article.open p {
+                padding-right: 0;
+            }
+        }
+
+        /* 小型手機 */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 34px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            main section {
+                padding: 54px 5%;
+            }
+
+            nav {
+                gap: 3px;
+            }
+
+            nav a,
+            nav a.nav-cta {
+                padding: 5px 7px;
+                font-size: 11px;
+            }
+
+            #hero {
+                padding: 48px 5% 56px;
+            }
+
+            .hero-text h1 {
+                font-size: 31px;
+            }
+
+            .hero-text h2 {
+                font-size: 20px;
+            }
+
+            .fade-line {
+                font-size: 20px;
+            }
+
+            .hero-photo {
+                height: 300px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .button-group .button {
+                width: 100%;
+            }
+
+            #finder {
+                padding: 54px 4%;
+            }
+
+            .finder-shell {
+                padding: 14px;
+            }
+
+            .finder-card {
+                padding: 22px 16px;
+            }
+
+            .finder-option {
+                gap: 10px;
+                padding: 12px 14px;
+            }
+
+            .finder-option-marker {
+                flex-basis: 28px;
+                width: 28px;
+                height: 28px;
+            }
+
+            .video-background {
+                min-height: 540px;
+                padding: 64px 4%;
+            }
+
+            .video-background__title {
+                font-size: 27px;
+            }
+
+            .page4-carousel {
+                padding: 0 40px 24px;
+            }
+
+            .page4-slide h3 {
+                font-size: 22px;
+            }
+
+            .page4-slide p {
+                font-size: 14px;
+            }
+
+            .page4-arrow {
+                width: 38px;
+                height: 38px;
+            }
+
+            .page4-arrow i {
+                font-size: 21px;
+            }
+
+            #DoctorApproved .doctor-approved__card {
+                flex-basis: 260px;
+                width: 260px;
+                min-width: 260px;
+                max-width: 260px;
+                padding: 18px;
+            }
+
+            #DoctorApproved .doctor-approved__card > img {
+                flex-basis: 170px;
+                height: 170px;
+            }
+
+            .bundle-card {
+                padding: 26px 18px 24px;
+            }
+
+            .bundle-card .sale-price {
+                font-size: 28px;
+            }
+
+            .order-modal {
+                padding: 12px;
+            }
+
+            .order-modal-content {
+                padding: 34px 18px 24px;
+                border-radius: 18px;
+            }
+
+            .order-total strong {
+                font-size: 26px;
+            }
+
+            .trust-item {
+                flex-basis: 180px;
+                width: 180px;
+                padding: 18px;
+            }
+
+            .trust-item svg {
+                width: 52px;
+                height: 52px;
+                margin-bottom: 13px;
+            }
+
+            .trust-item strong {
+                font-size: 20px;
+            }
+
+            .trust-item span {
+                font-size: 13px;
+            }
+
+            #faq article h3 {
+                font-size: 16px;
+            }
+
+            footer {
+                padding: 30px 16px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- === 導覽列選單，固定懸浮上方 === -->
+    <header>
+        <div class="container">
+
+            <h1 class="logo">牧穆生醫</h1>
+
+            <nav>
+                <a href="#hero">TOP</a>
+                <a href="#finder">選品指南</a>
+                <a href="#about">產品介紹</a>
+                <a href="#faq">常見問題</a>
+                <a class="nav-cta" href="#shop">超值優惠組合</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- === PAGE 1 ▶︎ 頂部開場 === -->
+        <section id="hero">
+            <!-- 左側文字 -->
+            <div class="hero-text">
+                <h2>用最好的品質，滋養牠的後半生活。</h2>
+                <h1>毛孩的每日健康保養</h1>
+
+                <!-- 備注：三行字做淡入效果 -->
+                <div class="fade-in-container">
+                    <p class="fade-line">天然日常營養配方</p>
+                    <p class="fade-line">從守護心血管到腦部抗老</p>
+                    <p class="fade-line">為毛孩補足每日需要的照顧</p>
+                </div>
+
+                <div class="button-group">
+
+                    <a class="button" href="#finder">
+                        尋找牠的專屬保健
+                    </a>
+
+                    <a class="button" href="#shop">
+                        立即選購
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- 右側圖片 -->
+            <div class="right-content">
+
+                <div class="hero-visual">
+
+                    <div class="hero-photo">
+                        <video autoplay muted loop playsinline preload="metadata" class="hero-video">
+
+                            <source src="https://cdn.pixabay.com/video/2023/05/31/165303-832460158_large.mp4"
+                                type="video/mp4">
+
+                            您的瀏覽器不支援播放此影片。
+
+                        </video>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- === PAGE 2 ▶︎ 選品指南步驟表單 === -->
+        <!-- 此區使用 React 多步驟問卷 -->
+        <section id="finder">
+
+            <h2>安心找到適合牠的日常保健品</h2>
+
+            <p class="finder-subtitle">
+                簡單幾步，掌握毛孩健康現況，找到更貼近日常需求的照顧方向。
+            </p>
+
+            <!-- React 掛載位置 -->
+            <div id="finder-root"></div>
+
+        </section>
+
+        <!-- === PAGE 3 ▶︎ 三款產品介紹與展示=== -->
+        <!--   排版card三張，商品圖  -->
+        <section id="about">
+
+            <div class="benefit-grid">
+                <article class="benefit-card reveal">
+                    <div class="num">
+                        <img src="./benefit-heart.png" alt="心血管守護">
+                    </div>
+                    <div>
+                        <h3>心血管守護</h3>
+                        <p>富含山楂葉與果萃取物、益母草、牛磺酸，預防擴張性心肌疾病，溫和舒張冠狀動脈、精準優化外周微循環， 從根本降低心臟泵血面臨的外周阻力負荷，全面捍衛全齡毛孩的核心生命動能。</p>
+                    </div>
+                </article>
+
+                <article class="benefit-card reveal">
+                    <div class="num">
+                        <img src="./benefit-neuro.png" alt="活化神經">
+                    </div>
+                    <div>
+                        <h3>活化神經系統</h3>
+                        <p>專為犬貓老化引起之認知障礙、中樞過度興奮與神經肌肉傳導退化所研發。
+                            融合北美美黃芩、南非醉茄與高純度魚油，預防認知功能衰退的同時，維持最佳的心智與肢體運動靈活度。</p>
+                    </div>
+                </article>
+
+                <article class="benefit-card reveal">
+                    <div class="num">
+                        <img src="benefit-vitality.png" alt="日常活動">
+                    </div>
+                    <div>
+                        <h3>全齡活力配方</h3>
+                        <p>科學配比刺五加、黃耆與黃金薑黃，深入細胞源頭催化能量代謝。
+                            溫和提升組織含氧量、加速體能恢復並舒緩關節負荷。無論是成長發育還是老年抗衰，全方位灌注核心動能，全面續航毛孩的日常健康活力。</p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- === PAGE 4 ▶︎ 科學說明影片與輪播 === -->
+        <section class="video-background" id="science">
+
+            <!-- 背景影片 -->
+            <video class="video-background__media" autoplay muted loop playsinline preload="metadata"
+                aria-hidden="true">
+
+                <source src="https://videos.pexels.com/video-files/8512879/8512879-uhd_3840_2160_24fps.mp4"
+                    type="video/mp4">
+
+            </video>
+            <!-- 前景內容 -->
+            <div class="video-background__content">
+
+                <h2 class="video-background__title">
+                    科學，仍是我們的信仰
+                </h2>
+
+                <!-- 輪播區 -->
+                <div class="page4-carousel" data-page4-carousel>
+
+                    <!-- 輪播文字 -->
+                    <div class="page4-slides">
+
+                        <!-- 第一張 -->
+                        <article class="page4-slide active">
+
+                            <h3>
+                                結合傳統藥草，效果更自然溫和
+                            </h3>
+
+                            <p>
+                                告別傳統漢方常有的重金屬懸浮物與殘渣。
+                                100% 物理重力精密過濾，剔除所有對身體無益的雜質與中藥苦澀味，無添加蔗糖與防腐劑，
+                                只留下純粹的天然修復力。
+                            </p>
+
+                        </article>
+
+                        <!-- 第二張 -->
+                        <article class="page4-slide">
+
+                            <h3>
+                                微米級製程，釋放植物完整活性
+                            </h3>
+
+                            <p>
+                                傳統煎藥難以突破植物細胞壁，造成營養流失。
+                                我們導入歐洲規格的精密水解技術，將山楂葉果與益母草裁切為微米級細緻分子，
+                                免去體內繁瑣轉化，讓珍貴的草本精華吸收速度大幅提升 5 倍。
+                            </p>
+
+                        </article>
+
+                    </div>
+
+                    <!-- 上一張 -->
+                    <button class="page4-arrow page4-prev" type="button" aria-label="上一張" data-page4-prev>
+                        <i class="ri-arrow-left-wide-fill"></i>
+                    </button>
+
+                    <!-- 下一張 -->
+                    <button class="page4-arrow page4-next" type="button" aria-label="下一張" data-page4-next>
+                        <i class="ri-arrow-right-wide-fill"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- === PAGE 5 ▶︎ 權威背書 === -->
+        <section id="DoctorApproved">
+
+            <h2>專業獸醫認證&nbsp;&nbsp;&nbsp;&nbsp;最安心的守護</h2>
+
+            <p>
+                懂你的細心呵護，我們用醫療級的堅持，給家人最純粹的天然營養。
+            </p>
+
+            <!-- React 卡片掛載區 -->
+            <div id="doctor-approved-root"></div>
+
+        </section>
+
+
+        <!-- === PAGE 6 ▶︎ 購買方案=== -->
+        <!-- 方案組合／價格導購，組合比較分析，原價、優惠價要標示上去，省了多少錢，各組說明需求與優勢
+             視覺設計：<card>三張並排，有上下浮動-->
+        <section id="shop">
+
+
+            <h2>最划算的組合方案</h2>
+
+            <p>
+                依照日常保養需求，
+                選擇最適合的補充方式。
+            </p>
+            <!-- JavaScript 動態產生三張方案卡片 -->
+            <div class="bundle-box" id="bundleList"></div>
+
+            <p
+                id="bundleSelectionStatus"
+                class="bundle-selection-status"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></p>
+
+        </section>
+
+        <!-- 簡易購買確認視窗 -->
+        <div id="orderModal" class="order-modal">
+
+            <div class="order-modal-content">
+
+                <button type="button" class="order-close" id="orderClose" aria-label="關閉">
+                    ×
+                </button>
+
+                <p class="order-small-title">
+                    ORDER SUMMARY
+                </p>
+
+                <h2>
+                    確認您的選購方案
+                </h2>
+
+                <div class="order-divider"></div>
+
+                <div class="order-info">
+
+                    <p>
+                        <span>方案</span>
+                        <strong id="orderBundleName">—</strong>
+                    </p>
+
+                    <p>
+                        <span>選擇內容</span>
+                        <strong id="orderProducts">—</strong>
+                    </p>
+
+                    <p id="orderGiftRow">
+                        <span>方案贈品</span>
+                        <strong id="orderGift">—</strong>
+                    </p>
+
+                </div>
+
+                <div class="order-total">
+
+                    <span>總金額</span>
+
+                    <strong id="orderPrice">
+                        NT$0
+                    </strong>
+
+                </div>
+
+                <button type="button" class="order-confirm-button" id="orderConfirm">
+
+                    模擬完成訂購
+
+                </button>
+
+                <p class="order-notice">
+                    此為模擬頁面，不會進行實際付款。
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- === PAGE 7 ▶︎ 品牌信任資訊 === -->
+        <!-- 品牌信任四項資訊 -->
+
+        <section class="trust">
+
+            <div class="container">
+
+                <div class="trust-bar reveal">
+
+                    <!-- 01 天然來源 -->
+                    <div class="trust-item">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                            aria-hidden="true">
+
+                            <path d="M0 0h24v24H0z" fill="none" />
+
+                            <path fill="currentColor"
+                                d="M2 22v-2s5-2 10-2s10 2 10 2v2zm9.3-12.9c-1.2-3.9-7.3-3-7.3-3s.2 7.8 5.9 6.6C9.5 9.8 8 9 8 9c2.8 0 3 3.4 3 3.4V17h2v-4.2s0-3.9 3-4.9c0 0-2 3-2 5c7 .7 7-8.9 7-8.9s-8.9-1-9.7 5.1" />
+
+                        </svg>
+
+                        <strong>100%</strong>
+                        <span>天然來源</span>
+
+                    </div>
+
+                    <!-- 02 快速出貨 -->
+                    <div class="trust-item">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 640 640" fill="none"
+                            aria-hidden="true">
+
+                            <path d="M0 0h640v640H0z" fill="none" />
+
+                            <path fill="currentColor"
+                                d="M64 160c0-35.3 28.7-64 64-64h288c35.3 0 64 28.7 64 64v32h50.7c17 0 33.3 6.7 45.3 18.7l45.3 45.3c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64h-3.3c-10.4 36.9-44.4 64-84.7 64s-74.2-27.1-84.7-64H300.7c-10.4 36.9-44.4 64-84.7 64s-74.2-27.1-84.7-64H128c-35.3 0-64-28.7-64-64v-48H24c-13.3 0-24-10.7-24-24s10.7-24 24-24h112c13.3 0 24-10.7 24-24s-10.7-24-24-24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24h176c13.3 0 24-10.7 24-24s-10.7-24-24-24H24c-13.3 0-24-10.7-24-24s10.7-24 24-24zm512 192v-50.7L530.7 256H480v96zM256 488c0-22.1-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40s40-17.9 40-40m232 40c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40s17.9 40 40 40" />
+
+                        </svg>
+
+                        <strong>24Hr</strong>
+                        <span>快速出貨</span>
+
+                    </div>
+
+                    <!-- 03 第三方檢驗 -->
+                    <div class="trust-item">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                            aria-hidden="true">
+
+                            <path fill="currentColor"
+                                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5zm-2 16l-4-4l1.41-1.41L10 14.17l6.59-6.59L18 9z" />
+
+                        </svg>
+
+                        <strong>SuperLab</strong>
+                        <span>第三方檢驗</span>
+
+                    </div>
+
+                    <!-- 04 安心體驗 -->
+                    <div class="trust-item">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+
+                            <rect width="18" height="18" x="3" y="4" rx="2" />
+                            <path d="M16 2v4M8 2v4M3 10h18" />
+                            <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+
+                        </svg>
+
+                        <strong>30 Days</strong>
+                        <span>安心體驗</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- === PAGE 8 ▶︎ 常見問題=== -->
+        <!-- 展開式問答 4 題 -->
+        <section id="faq">
+
+            <div class="container">
+
+                <h2>常見問題</h2>
+
+                <article>
+
+                    <h3>
+                        我家貓狗已經有吃主食罐頭均衡營養了，再吃保健品會不會造成腎結石或引發骨骼病症？
+                    </h3>
+
+                    <p>
+                        主食罐能提供「基礎發育」的營養，而我們的機能保健品是針對不同體質進行「精準升級」，且劑量皆經過嚴格的科學安全配比。
+                        <br>
+                        主食罐頭雖然能滿足毛孩每日的基礎營養需求，但就像人類「均衡飲食之外，仍會補充葉黃素或膠原蛋白」一樣。隨著毛孩的品種基因、年齡增長或生活型態變更，單靠主食的通用配方，往往無法給予特定器官足夠的預防性保護。
+                    </p>
+
+                </article>
+
+                <article>
+
+                    <h3>
+                        我家的貓咪有先天性胰臟功能不全（EPI），還能補充嗎？
+                    </h3>
+
+                    <p>
+                        外分泌胰臟功能不全（EPI）可能影響消化與營養吸收，部分貓咪需要補充胰臟酵素、維生素 B12 或調整飲食。即使病況穩定，仍須由獸醫師依產品成分、建議用量及治療計畫，評估是否適合補充。
+                        <br>
+                        保健品無法取代必要的醫療與營養管理，食用前，請務必先與您的主治獸醫師確認。
+                    </p>
+
+                </article>
+
+                <article>
+
+                    <h3>
+                        台灣地區潮濕炎熱、極端氣候，要如何保存呢？
+                    </h3>
+
+                    <p>
+                        本產品包裝特別針對高溫高濕氣候提升防護規格，採用單劑量獨立條包與高阻隔包材，最大程度減緩外部水氣與光線對商品的影響；請將本產品存放於室內陰涼乾處或防潮箱中，不建議置於汽車後車廂、廚房瓦斯爐旁或浴室周邊。
+                    </p>
+
+                </article>
+
+
+                <article>
+
+                    <h3>
+                        我家的毛孩會挑食，這些「天然草本」產品的適口性如何？
+                    </h3>
+
+                    <p>
+                        本系列在研發時已特別考量到偏肉食犬貓的感官偏好。我們打破傳統草本「苦澀、不易入口」的限制，將定量草本成分包裹於微型條狀的機能肉泥/液狀型態中，並透過天然水解風味來優化適口性。
+                        <br>
+                        部分嗅覺極度敏感或有挑食習慣的毛孩，初次接觸新氣味時可能會產生防備心，建議第一次食用時先擠出「米粒大小」的極微量肉泥，塗抹於毛孩的鼻尖或前腳掌。利用牠們習慣自主舔舐清理身體的本能完成初次風味適應，待其習慣後，再逐日緩慢遞增至建議用量。
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ============= Footer ============= -->
+    <footer>
+        <p>
+            <span>頂級天然植萃科研 | 專注毛孩心血管與腦部守護</span><br>
+            <span>服務時間：週一至週五 11:00-18:00</span><br>
+            <small>&copy; 2026 Mumu Biotech Ltd. All Rights Reserved.</small>
+
+        </p>
+    </footer>
+
+
+
+    <!-- // ******************  React ******************// -->
+
+
+    <!-- === PAGE 1 ▶︎ 首頁三行文字依序淡入 === -->
+    <script>
+        const fadeLines = document.querySelectorAll(".fade-line");
+
+        fadeLines.forEach(function (line, index) {
+            setTimeout(function () {
+                line.classList.add("show");
+            }, index * 700);
+        });
+    </script>
+
+
+    <!-- === PAGE 2 ▶︎ 選品指南 React 問卷 === -->
+    <script type="text/babel">
+
+        const { useState } = React;
+
+        function Finder() {
+
+            const [step, setStep] = useState(0);
+            const [answers, setAnswers] = useState(["", "", ""]);
+
+            // 三題問卷內容
+            const questions = [
+                {
+                    title: "家裡的寶貝現在幾歲？",
+                    description: "選擇毛孩目前的年齡階段。",
+                    options: [
+                        "幼年（1歲以下）",
+                        "成年（1～7歲）",
+                        "熟齡（7～11歲）",
+                        "年老（12歲以上）"
+                    ]
+                },
+                {
+                    title: "最近的狀態接近哪一種？",
+                    description: "依照平常觀察到的狀態，選擇最符合的一項。",
+                    options: [
+                        "活動力下降、行動較慢",
+                        "皮膚乾癢、毛髮狀況改變",
+                        "食慾不振、免疫力疑似下降",
+                        "無特別變化"
+                    ]
+                },
+                {
+                    title: "您希望如何為寶貝規劃日常器官保養？",
+                    description: "了解您的保養習慣與需求，找到適合的方向。",
+                    options: [
+                        "先了解最適合寶貝的保養方向，再選擇產品",
+                        "從目前最在意的健康需求開始，逐步建立保養習慣",
+                        "希望有明確的營養補充計畫，持續做好日常保養",
+                        "想先認識三款產品的差異，再決定適合的方案"
+                    ]
+                }
+            ];
+
+            // 上方只顯示「第一題、第二題、第三題」
+            const questionNames = ["第一題", "第二題", "第三題"];
+
+            // 計算進度條百分比
+            const progress = step === questions.length
+                ? 100
+                : ((step + 1) / questions.length) * 100;
+
+            // 選擇答案
+            function chooseAnswer(option) {
+                setAnswers(function (currentAnswers) {
+                    return currentAnswers.map(function (answer, index) {
+                        return index === step ? option : answer;
+                    });
+                });
+            }
+
+            // 下一題
+            function nextStep() {
+                if (step < questions.length && answers[step]) {
+                    setStep(function (currentStep) {
+                        return currentStep + 1;
+                    });
+                }
+            }
+
+            // 上一題
+            function prevStep() {
+                setStep(function (currentStep) {
+                    return Math.max(0, currentStep - 1);
+                });
+            }
+
+            // 重新測驗
+            function restartFinder() {
+                setAnswers(["", "", ""]);
+                setStep(0);
+            }
+
+            // 根據回答產生推薦結果
+            function getRecommendation() {
+
+                const age = answers[0];
+                const condition = answers[1];
+                const plan = answers[2];
+
+                if (
+                    condition === "皮膚乾癢、毛髮狀況改變" ||
+                    condition === "食慾不振、免疫力疑似下降"
+                ) {
+                    return {
+                        title: "先了解三款產品的保養方向",
+                        description:
+                            "毛孩的皮膚、毛髮或食慾變化可能有不同原因。" +
+                            "建議先諮詢獸醫，並了解三款產品的營養補充方向，" +
+                            "再選擇合適的日常保養方式。"
+                    };
+                }
+
+                if (
+                    plan === "想先認識三款產品的差異，再決定適合的方案"
+                ) {
+                    return {
+                        title: "三款日常保養配方",
+                        description:
+                            "適合希望先認識不同營養補充方向，" +
+                            "再依照毛孩的年齡、生活習慣與日常需求，" +
+                            "選擇適合方案的飼主。"
+                    };
+                }
+
+                if (condition === "活動力下降、行動較慢") {
+                    return {
+                        title: "全齡活力配方",
+                        description:
+                            "適合希望進一步了解日常營養補充，" +
+                            "並關注毛孩活力與生活品質的飼主。" +
+                            "若活動力明顯下降，應先諮詢獸醫確認原因。"
+                    };
+                }
+
+                if (
+                    age === "熟齡（7～11歲）" ||
+                    age === "年老（12歲以上）"
+                ) {
+                    return {
+                        title: "活化神經系統配方",
+                        description:
+                            "適合希望從熟齡階段開始認識日常營養補充，" +
+                            "同時關注毛孩神經系統與生活品質的飼主。"
+                    };
+                }
+
+                return {
+                    title: "全齡活力配方",
+                    description:
+                        "適合希望逐步建立日常營養補充習慣，" +
+                        "持續關注毛孩日常活力與營養需求的飼主。"
+                };
+            }
+
+            return (
+                <div className="finder-shell">
+
+                    {/* 上方題目進度：只顯示第一題、第二題、第三題 */}
+                    <div className="finder-progress-heading">
+                        <span>
+                            {step === questions.length
+                                ? "測驗完成"
+                                : questionNames[step]}
+                        </span>
+                    </div>
+
+                    {/* 進度條 */}
+                    <div
+                        className="finder-progress-track"
+                        role="progressbar"
+                        aria-label="測驗進度"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow={progress}
+                    >
+                        <div
+                            className="finder-progress-value"
+                            style={{ width: `${progress}%` }}
+                        ></div>
+                    </div>
+
+                    {step === questions.length ? (
+
+                        /* 測驗結果 */
+                        <article className="finder-card finder-result">
+
+                            <span className="finder-result-label">
+                                適合您的產品如下
+                            </span>
+
+                            <h3>
+                                推薦：{getRecommendation().title}
+                            </h3>
+
+                            <p className="finder-result-description">
+                                {getRecommendation().description}
+                            </p>
+
+                            <p className="finder-question-description">
+                                本測驗僅提供一般日常保養資訊，不代替獸醫診斷或治療建議。
+                            </p>
+
+                            <a
+                                href="#about"
+                                className="finder-result-link"
+                            >
+                                點我看商品 →
+                            </a>
+
+                            <div className="finder-buttons">
+                                <button
+                                    type="button"
+                                    className="finder-btn secondary"
+                                    onClick={restartFinder}
+                                >
+                                    重新測驗
+                                </button>
+                            </div>
+
+                        </article>
+
+                    ) : (
+
+                        /* 問卷題目 */
+                        <article className="finder-card" key={step}>
+
+                            <h3>{questions[step].title}</h3>
+
+                            <p className="finder-question-description">
+                                {questions[step].description}
+                            </p>
+
+                            <div className="finder-options">
+
+                                {questions[step].options.map(function (option, index) {
+
+                                    const selected = answers[step] === option;
+
+                                    return (
+                                        <button
+                                            key={option}
+                                            type="button"
+                                            className={
+                                                selected
+                                                    ? "finder-option selected"
+                                                    : "finder-option"
+                                            }
+                                            aria-pressed={selected}
+                                            onClick={function () {
+                                                chooseAnswer(option);
+                                            }}
+                                        >
+                                            <span
+                                                className="finder-option-marker"
+                                                aria-hidden="true"
+                                            >
+                                                {selected ? "✓" : index + 1}
+                                            </span>
+
+                                            <span className="finder-option-text">
+                                                {option}
+                                            </span>
+
+                                            <span
+                                                className="finder-option-arrow"
+                                                aria-hidden="true"
+                                            >
+                                                ›
+                                            </span>
+                                        </button>
+                                    );
+                                })}
+
+                            </div>
+
+                            <div className="finder-buttons">
+                                <button
+                                    type="button"
+                                    className="finder-btn secondary"
+                                    onClick={prevStep}
+                                    disabled={step === 0}
+                                >
+                                    ← 上一題
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="finder-btn"
+                                    onClick={nextStep}
+                                    disabled={!answers[step]}
+                                >
+                                    {step === questions.length - 1
+                                        ? "查看推薦結果 →"
+                                        : "下一題 →"}
+                                </button>
+                            </div>
+
+                        </article>
+                    )}
+
+                </div>
+            );
+        }
+
+        // React 掛載
+        const finderRoot = ReactDOM.createRoot(
+            document.getElementById("finder-root")
+        );
+
+        finderRoot.render(<Finder />);
+
+    </script>
+
+    <!-- === PAGE 4 ▶︎ 科學說明影片與輪播 === -->
+    <script>
+        (() => {
+            const carousel = document.querySelector("[data-page4-carousel]");
+
+            if (!carousel) return;
+
+            const slides = Array.from(
+                carousel.querySelectorAll(".page4-slide")
+            );
+
+            const prevButton = carousel.querySelector("[data-page4-prev]");
+            const nextButton = carousel.querySelector("[data-page4-next]");
+
+            if (!slides.length || !prevButton || !nextButton) return;
+
+            let currentIndex = 0;
+            let timer = null;
+
+            function showSlide(index) {
+                currentIndex = (index + slides.length) % slides.length;
+
+                slides.forEach((slide, i) => {
+                    const isActive = i === currentIndex;
+
+                    slide.classList.toggle("active", isActive);
+                    slide.setAttribute("aria-hidden", String(!isActive));
+                });
+            }
+
+            function stopAutoplay() {
+                clearInterval(timer);
+                timer = null;
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+
+                timer = setInterval(() => {
+                    showSlide(currentIndex + 1);
+                }, 8000);
+            }
+
+            prevButton.addEventListener("click", () => {
+                showSlide(currentIndex - 1);
+                startAutoplay();
+            });
+
+            nextButton.addEventListener("click", () => {
+                showSlide(currentIndex + 1);
+                startAutoplay();
+            });
+
+            showSlide(0);
+            startAutoplay();
+        })();
+    </script>
+
+<!-- === PAGE 5 ▶︎ 權威背書 === -->
+    <script type="text/babel">
+
+        (() => {
+
+            /* 1. 醫師資料：只需要維護這一份 */
+            const doctors = [
+                {
+                    name: "Dr. Ethan Brooks",
+                    image: "https://plus.unsplash.com/premium_photo-1661963697387-9ba753d0df95?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+                    comment: "完善的產品設計能讓寵物照護更順暢。本產品兼具實用與美觀，能顯著提升日常照護的便利性，非常適合飼主選擇。"
+                },
+                {
+                    name: "Dr. Charlotte Hayes",
+                    image: "https://plus.unsplash.com/premium_photo-1681881911038-34ec3ebdce58?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+                    comment: "優質的寵物產品必須兼顧美觀與實際需求。本產品在使用體驗上表現出色，能為重視生活品質的寵物家庭帶來極大便利。"
+                },
+                {
+                    name: "Dr. Emily Carter",
+                    image: "https://plus.unsplash.com/premium_photo-1664475450083-5c9eef17a191?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+                    comment: "嚴選來源清楚、成分單純的天然食材，讓每一項原料都更容易理解，也讓日常補充更安心。"
+                },
+                {
+                    name: "Dr. Oliver Bennett",
+                    image: "https://plus.unsplash.com/premium_photo-1661962313886-52c97bb99725?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+                    comment: "我最欣賞這款產品兼顧實用性與細節設計，能輕鬆融入日常生活，不增加額外照護負擔，特別適合重視產品品質與照護體驗的飼主。"
+                },
+                {
+                    name: "Dr. Sophia Mitchell",
+                    image: "https://images.pexels.com/photos/6234602/pexels-photo-6234602.jpeg?auto=compress&dpr=1&h=750&w=1260",
+                    comment: "優質的寵物照護產品，不僅需要良好設計，也應讓飼主使用時感到簡單便利。這款產品兼具美感與實用性，能為飼主提供另一種照護選擇。"
+                },
+                {
+                    name: "Dr. James Wilson",
+                    image: "https://images.pexels.com/photos/6235650/pexels-photo-6235650.jpeg?auto=compress&dpr=1&h=750&w=1260",
+                    comment: "本產品完美結合了設計美感與日常實用性，兼顧功能與品質，能切實提升寵物的生活品質，非常值得飼主信賴。"
+                }
+            ];
+
+            /* 2. 單張卡片 */
+            function DoctorCard({ doctor }) {
+                return (
+                    <article className="doctor-approved__card">
+
+                        <img
+                            src={doctor.image}
+                            alt="獸醫情境示意照片，非實際推薦者"
+                        />
+
+                        <h3>{doctor.name}</h3>
+
+                        <p>{doctor.comment}</p>
+
+                    </article>
+                );
+            }
+
+            /* 3. 跑馬燈：自動產生兩組相同卡片 */
+            function DoctorApprovedMarquee() {
+                return (
+                    <div
+                        className="doctor-approved__marquee"
+                        role="region"
+                        aria-label="獸醫專業評語"
+                    >
+
+                        <div className="doctor-approved__track">
+
+                            {[0, 1].map((groupIndex) => (
+                                <div
+                                    className="doctor-approved__group"
+                                    key={groupIndex}
+                                    aria-hidden={
+                                        groupIndex === 1 ? "true" : undefined
+                                    }
+                                >
+
+                                    {doctors.map((doctor) => (
+                                        <DoctorCard
+                                            doctor={doctor}
+                                            key={doctor.name}
+                                        />
+                                    ))}
+
+                                </div>
+                            ))}
+
+                        </div>
+
+                    </div>
+                );
+            }
+
+            /* 4. 掛載 React 元件 */
+            const rootElement = document.getElementById(
+                "doctor-approved-root"
+            );
+
+            if (rootElement) {
+                ReactDOM.createRoot(rootElement).render(
+                    <DoctorApprovedMarquee />
+                );
+            }
+
+        })();
+
+    </script>
+
+    <!-- ===PAGE 6 ▶︎ 購買方案=== -->
+    <!-- === 重要導購區，自由選配方案，出示價格=== -->
+    <script>
+        // ========== 三款產品名稱 ==========
+        const productNames = [
+            "心血管守護",
+            "活化神經",
+            "全齡活力"
+        ];
+
+        // ========== 三張方案卡片資料 ==========
+        const bundles = [
+            {
+                id: "basic",
+                name: "朝氣體驗組",
+                originalPrice: null,
+                salePrice: 2800,
+                chooseCount: 1,
+
+                descriptions: [
+                    "把簡單的呵護，輕輕放進每一天。",
+                    "從一份剛剛好的照顧，開始毛孩的好日子。",
+                    "像照顧窗邊的小植栽，細細灌溉每日的陪伴。"
+                ],
+
+                gift: "隨機體驗組 × 5 包"
+            },
+
+            {
+                id: "double",
+                name: "雙效加冕組",
+                originalPrice: 5600,
+                salePrice: 5300,
+                chooseCount: 2,
+
+                descriptions: [
+                    "兩份溫柔心意，搭配專屬的日常節奏。",
+                    "讓剛剛好的雙重照顧，自然融入每一天。",
+                    "依牠的生活步調，挑選兩份細緻陪伴。"
+                ]
+            },
+
+            {
+                id: "complete",
+                name: "全面養護組",
+                originalPrice: 8400,
+                salePrice: 7950,
+
+                // 0 代表三款各一組，不需自行選配
+                chooseCount: 0,
+
+                descriptions: [
+                    "把三份心意備齊，讓陪伴更完整。",
+                    "從晨光到夜晚，給每個平凡日子多一點呵護。",
+                    "三款日常照顧，一次收藏細緻心意。"
+                ]
+            }
+        ];
+
+
+        // ========== 格式化價格 ==========
+        function formatPrice(price) {
+            return `NT$${price.toLocaleString("zh-TW")}`;
+        }
+
+
+        // ========== 計算現省金額 ==========
+        function calculateDiscount(originalPrice, salePrice) {
+
+            if (
+                Number.isFinite(originalPrice) &&
+                originalPrice > salePrice
+            ) {
+                return originalPrice - salePrice;
+            }
+
+            return 0;
+        }
+
+
+        // ========== 建立文字元素 ==========
+        function createTextElement(tag, className, text) {
+
+            const element = document.createElement(tag);
+
+            if (className) {
+                element.className = className;
+            }
+
+            element.textContent = text;
+
+            return element;
+        }
+
+
+        // ========== 動態產生方案卡片 ==========
+        function createBundleCard(bundle) {
+
+            const card = document.createElement("article");
+
+            card.className = "bundle-card";
+            card.dataset.bundleId = bundle.id;
+
+
+            // 方案名稱
+            card.appendChild(
+                createTextElement("h3", "", bundle.name)
+            );
+
+
+            // 價格區域
+            const pricing = document.createElement("div");
+            pricing.className = "bundle-pricing";
+
+
+            // 原價與刪除線
+            if (bundle.originalPrice !== null) {
+
+                pricing.appendChild(
+                    createTextElement(
+                        "p",
+                        "original-price",
+                        `原價 ${formatPrice(bundle.originalPrice)}`
+                    )
+                );
+            }
+
+
+            // 優惠售價
+            pricing.appendChild(
+                createTextElement(
+                    "p",
+                    "sale-price",
+                    formatPrice(bundle.salePrice)
+                )
+            );
+
+
+            // 現省多少錢
+            const saving = calculateDiscount(
+                bundle.originalPrice,
+                bundle.salePrice
+            );
+
+            if (saving > 0) {
+
+                pricing.appendChild(
+                    createTextElement(
+                        "p",
+                        "discount-text",
+                        `現省 ${formatPrice(saving)}`
+                    )
+                );
+            }
+
+            card.appendChild(pricing);
+
+
+            // ========== 隨機顯示簡短文案 ==========
+            const randomDescription = bundle.descriptions[
+                Math.floor(Math.random() * bundle.descriptions.length)
+            ];
+
+            card.appendChild(
+                createTextElement(
+                    "p",
+                    "bundle-description",
+                    randomDescription
+                )
+            );
+
+
+            // ========== 方案內容 ==========
+            const content = document.createElement("div");
+            content.className = "bundle-content";
+
+
+            if (bundle.chooseCount > 0) {
+
+                // 卡片一：三選一
+                // 卡片二：三選二
+                const fieldset = document.createElement("fieldset");
+                fieldset.className = "bundle-choices";
+
+                fieldset.appendChild(
+                    createTextElement(
+                        "legend",
+                        "",
+                        `三款配方，任選 ${bundle.chooseCount} 款`
+                    )
+                );
+
+
+                productNames.forEach(function (product) {
+
+                    const label = document.createElement("label");
+                    label.className = "bundle-option";
+
+                    const input = document.createElement("input");
+
+                    // 三選一使用 radio
+                    // 三選二使用 checkbox
+                    input.type = bundle.chooseCount === 1
+                        ? "radio"
+                        : "checkbox";
+
+                    input.name = `products-${bundle.id}`;
+                    input.value = product;
+                    input.dataset.productOption = "true";
+
+                    label.appendChild(input);
+                    label.appendChild(
+                        document.createTextNode(product)
+                    );
+
+                    fieldset.appendChild(label);
+                });
+
+                content.appendChild(fieldset);
+
+            } else {
+
+                // ========== 卡片三：三款各一組 ==========
+                content.appendChild(
+                    createTextElement(
+                        "p",
+                        "product-list-title",
+                        "三款配方，各一組"
+                    )
+                );
+
+                const list = document.createElement("ul");
+                list.className = "bundle-product-list";
+
+                productNames.forEach(function (product) {
+
+                    list.appendChild(
+                        createTextElement(
+                            "li",
+                            "",
+                            `${product} × 1 組`
+                        )
+                    );
+                });
+
+                content.appendChild(list);
+            }
+
+
+            // ========== 卡片一附贈體驗組 ==========
+            if (bundle.gift) {
+
+                content.appendChild(
+                    createTextElement(
+                        "p",
+                        "bundle-gift",
+                        `附贈｜${bundle.gift}`
+                    )
+                );
+            }
+
+            card.appendChild(content);
+
+
+            // ========== 購買按鈕 ==========
+            const button = createTextElement(
+                "button",
+                "bundle-select-button",
+                "購買此方案"
+            );
+
+            button.type = "button";
+
+            card.appendChild(button);
+
+            return card;
+        }
+
+
+        // ========== 顯示選購狀態 ==========
+        function getSelectionStatus() {
+            return document.getElementById("bundleSelectionStatus");
+        }
+
+
+        function setSelectionStatus(message) {
+
+            const status = getSelectionStatus();
+
+            if (!status) return;
+
+            status.hidden = !message;
+            status.textContent = message;
+        }
+
+
+        // ========== 取得使用者選擇的產品 ==========
+        function selectedProductsFor(card, bundle) {
+
+            // 全面養護組固定包含三款
+            if (bundle.chooseCount === 0) {
+                return [...productNames];
+            }
+
+            return Array.from(
+                card.querySelectorAll(
+                    "input[data-product-option]:checked"
+                )
+            ).map(function (input) {
+                return input.value;
+            });
+        }
+
+
+        // ========== 初始化購買方案 ==========
+        function initShop() {
+
+            const list = document.getElementById("bundleList");
+
+            if (!list || list.dataset.shopInitialized === "true") {
+                return;
+            }
+
+
+            // 動態產生三張卡片
+            const fragment = document.createDocumentFragment();
+
+            bundles.forEach(function (bundle) {
+                fragment.appendChild(createBundleCard(bundle));
+            });
+
+            list.replaceChildren(fragment);
+
+            list.dataset.shopInitialized = "true";
+
+
+            // ========== 監聽選配變更 ==========
+            list.addEventListener("change", function (event) {
+
+                const input = event.target;
+
+                if (
+                    !(input instanceof HTMLInputElement) ||
+                    !input.matches("[data-product-option]")
+                ) {
+                    return;
+                }
+
+                const card = input.closest(".bundle-card");
+
+                const bundle = bundles.find(function (item) {
+                    return item.id === card.dataset.bundleId;
+                });
+
+                if (!bundle) return;
+
+
+                // 雙效加冕組最多只能選兩款
+                if (
+                    selectedProductsFor(card, bundle).length >
+                    bundle.chooseCount
+                ) {
+
+                    input.checked = false;
+
+                    setSelectionStatus(
+                        "雙效加冕組可從三款配方中挑選兩款。若要更換，請先取消一款。"
+                    );
+
+                } else {
+
+                    setSelectionStatus("");
+                }
+
+
+                // 選配變更後，取消原本的選取狀態
+                list.querySelectorAll(".bundle-card").forEach(
+                    function (item) {
+                        item.classList.remove("selected");
+                    }
+                );
+            });
+
+
+            // ========== 購買此方案按鈕 ==========
+            list.addEventListener("click", function (event) {
+
+                const button = event.target.closest(
+                    ".bundle-select-button"
+                );
+
+                if (!button || !list.contains(button)) {
+                    return;
+                }
+
+                const card = button.closest(".bundle-card");
+
+                const bundle = bundles.find(function (item) {
+                    return item.id === card.dataset.bundleId;
+                });
+
+                if (!bundle) return;
+
+
+                // 取得已選配方
+                const chosen = selectedProductsFor(card, bundle);
+
+
+                // 確認選擇數量是否正確
+                if (
+                    bundle.chooseCount > 0 &&
+                    chosen.length !== bundle.chooseCount
+                ) {
+
+                    setSelectionStatus(
+                        `請先為「${bundle.name}」挑選 ${bundle.chooseCount} 款配方。`
+                    );
+
+                    card.querySelector(
+                        "input[data-product-option]"
+                    ).focus();
+
+                    return;
+                }
+
+
+                // ========== 卡片選中樣式 ==========
+                list.querySelectorAll(".bundle-card").forEach(
+                    function (item) {
+
+                        item.classList.toggle(
+                            "selected",
+                            item === card
+                        );
+                    }
+                );
+
+                /* 打開購買確認視窗 */
+                openOrderModal(
+                    bundle,
+                    chosen
+                );
+
+            });
+        }
+
+
+        // ========== 網頁載入後執行 ==========
+        if (document.readyState === "loading") {
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                initShop
+            );
+
+        } else {
+
+            initShop();
+        }
+
+
+        /* =====================================
+   簡易購買確認視窗
+===================================== */
+
+        const orderModal =
+            document.getElementById("orderModal");
+
+        const orderClose =
+            document.getElementById("orderClose");
+
+        const orderConfirm =
+            document.getElementById("orderConfirm");
+
+        const orderBundleName =
+            document.getElementById("orderBundleName");
+
+        const orderProducts =
+            document.getElementById("orderProducts");
+
+        const orderGift =
+            document.getElementById("orderGift");
+
+        const orderGiftRow =
+            document.getElementById("orderGiftRow");
+
+        const orderPrice =
+            document.getElementById("orderPrice");
+
+
+        /* =============================
+           打開購買確認視窗
+        ============================= */
+
+        function openOrderModal(bundle, chosenProducts) {
+
+            // 每次打開時先恢復確認視窗的原始狀態
+            orderModal.querySelector("h2").textContent = "確認您的選購方案";
+            orderModal.querySelector(".order-info").style.display = "block";
+            orderModal.querySelector(".order-total").style.display = "flex";
+            orderConfirm.style.display = "block";
+            orderModal.querySelector(".order-notice").textContent =
+                "此為專題展示頁面，不會進行實際付款。";
+
+            orderBundleName.textContent =
+                bundle.name;
+
+
+            orderProducts.textContent =
+                chosenProducts.join("、");
+
+
+            orderPrice.textContent =
+                formatPrice(bundle.salePrice);
+
+
+            /* 有贈品才顯示 */
+            if (bundle.gift) {
+
+                orderGiftRow.style.display = "flex";
+
+                orderGift.textContent =
+                    bundle.gift;
+
+            } else {
+
+                orderGiftRow.style.display = "none";
+
+            }
+
+
+            orderModal.classList.add("show");
+
+            document.body.style.overflow =
+                "hidden";
+        }
+
+
+        /* =============================
+           關閉視窗
+        ============================= */
+
+        function closeOrderModal() {
+
+            orderModal.classList.remove("show");
+
+            document.body.style.overflow = "";
+
+        }
+
+
+        orderClose.addEventListener(
+            "click",
+            closeOrderModal
+        );
+
+
+        /* 點背景也可以關閉 */
+        orderModal.addEventListener(
+            "click",
+            function (event) {
+
+                if (event.target === orderModal) {
+                    closeOrderModal();
+                }
+
+            }
+        );
+
+
+        /* ESC 關閉 */
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+                    closeOrderModal();
+                }
+
+            }
+        );
+
+        /* =============================
+           模擬訂購完成
+        ============================= */
+        orderConfirm.addEventListener(
+            "click",
+            function () {
+                orderModal.querySelector("h2").textContent =
+                    "已收到您的訂單";
+
+                orderModal.querySelector(".order-info").style.display =
+                    "none";
+
+                orderModal.querySelector(".order-total").style.display =
+                    "none";
+
+                orderConfirm.style.display =
+                    "none";
+
+                orderModal.querySelector(".order-notice").textContent =
+                    "感謝您的購買！我們已收訂單，約1-3 個工作日內安排出貨，出貨時將發送簡訊通知。";
+            }
+        );
+
+    </script>
+
+    <!-- === PAGE 8 ▶︎ FAQ 展開與收合 === -->
+    <script>
+        const faqQuestions = document.querySelectorAll("#faq article h3");
+
+        faqQuestions.forEach(function (question) {
+            question.addEventListener("click", function () {
+                question.parentElement.classList.toggle("open");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
