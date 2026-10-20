@@ -22,3 +22,7 @@
 
 網站：
 https://autumn9797.github.io/My-Project-Portfolio/
+
+## 參考資料
+https://www.webking.tw/?一頁式網站案例
+https://uniam.jp/?srsltid=AU7gw4XcWRfYfI9oOKgsnBifU5NbX36wotP33TrXzICYKZ-ldakoJ3B5
